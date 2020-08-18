@@ -11,7 +11,7 @@ void readDictionary(std::unordered_map<int, std::vector<std::string> > &dictiona
   // list over set: although unique values and order does not matter, since iterating over everything later it will be O(N) anyway
   // list has less memory usage than a set. Not searching for particular words, not inserting in middle, not deleting. 
   std::string currWord;
-  std::ifstream inputFile("dictionary.txt");
+  std::ifstream inputFile("dictionary.txt"); // Change text file name here for testing purposes. 
 
   while (std::getline(inputFile, currWord)) {
     int wordLen = currWord.length();
@@ -22,11 +22,13 @@ void readDictionary(std::unordered_map<int, std::vector<std::string> > &dictiona
   }
 }
 
+// Reads user responses into appropriate data type. T is usually either an int or a char. 
 template <class T>
 T getUserSpecifiedValues(std::string message, std::unordered_map<int, std::vector<std::string> > &dictionaryMap, bool dictFind) {
   T requested;
   std::stringstream ss; 
 
+  // Continues until user has entered appropriate values of the appropatiate data type. 
   while (true) {
     std::string userInputWordLength;
     std::cout << message;
@@ -52,6 +54,7 @@ T getUserSpecifiedValues(std::string message, std::unordered_map<int, std::vecto
   }
 }
 
+// Generates word family key for the current word, blanking out certain characters with '-' character. 
 std::string generatePositions(char currGuess, std::string currWord,  std::string currState) {
   std::string buildup;
 
@@ -66,6 +69,7 @@ std::string generatePositions(char currGuess, std::string currWord,  std::string
   return buildup;
 }
 
+// Counts number of dashes in word. If returns 0, means that the word has been guessed.
 int countCharsLeft(std::string currState) {
   int numDashes;
   for (size_t i = 0; i < currState.length(); i++) {
@@ -165,6 +169,7 @@ void initializeGame(std::unordered_map<int, std::vector<std::string> > &dictiona
   }
 }
 
+// Main function has two functions, one for creating dictionaryMap and the other for initializing cascade of actual gameplay functions. 
 int main(int argc, char* argv[]) {
   std::unordered_map<int, std::vector<std::string> > dictionaryMap; // "Master" data structure mapping from word length to all words of that length. 
 
