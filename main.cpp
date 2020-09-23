@@ -1,3 +1,5 @@
+// Personal project that follows 106L assignment designed by Keith Schwarz.
+
 #include <iostream> 
 #include <fstream> 
 #include <sstream> 
